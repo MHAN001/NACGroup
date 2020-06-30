@@ -13,7 +13,7 @@ public class HelloWorldController {
 
     @GetMapping(path = "/world")
     public @ResponseBody String get() {
-        return "Hello World";
+        return "Go NACG";
     }
 
 }
