@@ -1,6 +1,7 @@
 package nacgroup.monoservice.server.objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -31,20 +32,22 @@ public class Activity {
     private String activityName;
 
     @ManyToOne
-    @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "LOCATION_ID_FK"))
+    @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "none"))
     private Location location;
 
     @ElementCollection
+    @CollectionTable(name = "available_dates", joinColumns = @JoinColumn(name = "activity_id"),
+            foreignKey = @ForeignKey(name = "none"))
     private List<Date> availableDates = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "contact_type_id", foreignKey = @ForeignKey(name = "CONTACT_TYPE_ID_FK"))
+    @JoinColumn(name = "contact_type_id", foreignKey = @ForeignKey(name = "none"))
     private ContactType contactType;
 
     private String activityContact;
 
     @ManyToOne
-    @JoinColumn(name = "activity_type_id", foreignKey = @ForeignKey(name = "ACTIVITY_TYPE_ID_FK"))
+    @JoinColumn(name = "activity_type_id", foreignKey = @ForeignKey(name = "none"))
     private ActivityType activityType;
 
     public Long getId() {
