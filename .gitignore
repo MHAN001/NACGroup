@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+###mac junk###
+*.DS_Store
