@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import App from './containers/App';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+
+const div = document.createElement('div');
+document.body.appendChild(div);
+document.title = "NACG";
+
 
 const Routes = () => (
     <main>
         <Switch>
-            <Route path="/" component={App} /> >
+            <Route path="/app" component={App} />
+            <Route path="/home" component={() => <div>Home</div>} />
+            <Route path="/activities/:activityId?" component={() => <div>Activity</div>} />
+            <Redirect exact from="*" to="/home" />
         </Switch>
     </main>
 );
@@ -23,14 +30,5 @@ export const MyApp =() => {
     )
 };
 
-ReactDOM.render(
-  <React.StrictMode>
-    <MyApp />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM.render(<MyApp />, div);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
